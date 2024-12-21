@@ -1,3 +1,12 @@
+<?php
+// Include the database connection
+include_once 'mahasiswa/db.php';
+
+// Fetch car data from the database
+$sql = "SELECT car_name, price FROM car_stats";
+$result = $conn->query($sql);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -127,26 +136,28 @@
     <div class="container">
         <h1>Showroom Mobil</h1>
         <div class="car-grid">
-            <div class="car-card">
-                <img src="img/mobil1.jpg" alt="Mobil 1">
-                <h3>Toyota Avanza</h3>
-                <p>Harga: Rp 200.000.000</p>
-            </div>
-            <div class="car-card">
-                <img src="img/mobil2.jpg" alt="Mobil 2">
-                <h3>Honda Civic</h3>
-                <p>Harga: Rp 400.000.000</p>
-            </div>
-            <div class="car-card">
-                <img src="img/mobil3.jpg" alt="Mobil 3">
-                <h3>Mitsubishi Pajero</h3>
-                <p>Harga: Rp 500.000.000</p>
-            </div>
-            <div class="car-card">
-                <img src="img/mobil4.jpg" alt="Mobil 4">
-                <h3>Ford Mustang</h3>
-                <p>Harga: Rp 1.500.000.000</p>
-            </div>
+            <?php
+            // Check if there are any results
+            if ($result->num_rows > 0) {
+                // Output data for each car
+                while ($row = $result->fetch_assoc()) {
+                    $carName = htmlspecialchars($row['car_name']);
+                    $price = number_format($row['price'], 0, ',', '.');
+                    echo "
+                        <div class='car-card'>
+                            <img src='img/mobil.jpg' alt='$carName'>
+                            <h3>$carName</h3>
+                            <p>Harga: Rp $price</p>
+                        </div>
+                    ";
+                }
+            } else {
+                echo "<p>No cars available in the showroom.</p>";
+            }
+
+            // Close the database connection
+            $conn->close();
+            ?>
         </div>
     </div>
 

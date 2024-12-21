@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['username'] = $user['username'];
         $_SESSION['role'] = 'member';
         $_SESSION['user_id'] = $user['id']; 
-        header("Location: books.php"); 
+        header("Location: index.php"); 
         exit();
     } else {
         $error = "Username atau password salah!";

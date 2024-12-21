@@ -414,11 +414,7 @@
             <li><a href="#">Home</a></li>
             <li><a href="showroom.php">Showroom</a></li>
             <li>
-                <a href="#">Login</a>
-                <div class="dropdown-content">
-                    <a href="login.php">Login Admin</a>
-                    <a href="loginpengguna.php">Login Pengguna</a>
-                </div>
+                <a href="loginpengguna.php">Login</a>
             </li>
             <li><a href="register.php">Registrasi</a></li>
         </ul>

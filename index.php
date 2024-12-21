@@ -14,15 +14,22 @@
     <!-- Navbar -->
     <nav id="navbar">
         <div class="logo"><img src="img/logo.png" alt="PEDINUS Logo" style="height: 70px; max-height: 100%;"></div>
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="showroom.php">Showroom</a></li>
-            <li>
-                <a href="loginpengguna.php">Login</a>
-            </li>
-            <li><a href="register.php">Registrasi</a></li>
-        </ul>
     </nav>
+
+    <div class="navigation">
+        <input type="checkbox" name="checkbox" id="menu-btn" class="menu-btn">
+        <label for="menu-btn" class="menu-icon">
+            <span class="bar"></span>
+        </label>
+        <div class="menu">            
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="showroom.php">Showroom</a></li>
+                <li><a href="loginpengguna.php">Login</a></li>
+                <li><a href="register.php">Registrasi</a></li>
+            </ul>
+        </div>
+    </div>
 
     <!-- Hero section -->
     <section class="hero">

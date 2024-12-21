@@ -117,7 +117,7 @@
     <nav>
         <div class="logo">PEDINUS</div>
         <ul>
-            <li><a href="index.html">Home</a></li>
+            <li><a href="index.php">Home</a></li>
             <li><a href="showroom.php">Showroom</a></li>
             <li><a href="login.php">Login</a></li>
             <li><a href="register.php">Registrasi</a></li>

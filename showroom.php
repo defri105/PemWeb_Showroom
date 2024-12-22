@@ -319,7 +319,7 @@ $result = $conn->query($sql);
                 $carId = $row['id'];
                 $carName = htmlspecialchars($row['car_name']);
                 $price = number_format($row['price'], 0, ',', '.');
-                $image = $carName === 'Nevera' ? 'img/nevera.jpg' : ($carName === 'Nevera R' ? 'img/nevera_r.jpg' : 'img/mobil.jpg');
+                $image = $carName === 'Nevera' ? 'images/rimec nevera.jpg' : ($carName === 'Nevera R' ? 'images/nevera R.jpg' : 'images/nevera R.jpg');
                 echo "
                     <div class='car-card'>
                         <img src='$image' alt='$carName'>
@@ -339,11 +339,49 @@ $result = $conn->query($sql);
 </div>
 
 <!-- Footer -->
-<footer>
-    <div>
-        &copy; 2023 Bugatti Rimac d.o.o. All rights reserved.
-    </div>
-</footer>
+<footer style="background-color: #001f3f; color: white; padding: 40px 20px; font-size: 14px;">
+        <div style="text-align: center; margin-bottom: 20px;">
+            <img src="images/logo rimac.png" alt="Rimac Logo" style="width: 200px;">
+            <div style="margin-top: 10px;">
+                <a href="#careers" style="color: white; text-decoration: none; margin: 0 15px; font-size: 16px;">Careers</a>
+                <a href="#partners-map" style="color: white; text-decoration: none; margin: 0 15px; font-size: 16px;">Partners Map</a>
+                <a href="#media" style="color: white; text-decoration: none; margin: 0 15px; font-size: 16px;">Media</a>
+                <a href="#factory-tours" style="color: white; text-decoration: none; margin: 0 15px; font-size: 16px;">Factory Tours</a>
+                <a href="#e-store" style="color: white; text-decoration: none; margin: 0 15px; font-size: 16px;">E_Store</a>
+                <a href="#contact" style="color: white; text-decoration: none; margin: 0 15px; font-size: 16px;">Contact</a>
+            </div>
+        </div>
+        <div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
+            <div style="text-align: center;">
+                <h4>CONTACT</h4>
+                <p>info@bugatti-rimac.com</p>
+                <p>tel: +385 1 563 45 92</p>
+                <p>Ljubljanska ulica 7, Brezje</p>
+                <p>10431 Sveta Nedelja, Croatia</p>
+            </div>
+            <div style="text-align: center;">
+                <h4>FIND US ON</h4>
+                <a href="#" style="margin: 0 10px;"><img src="images/youtube.png" alt="Youtube" style="width: 24px;"></a>
+                <a href="#" style="margin: 0 10px;"><img src="images/instagram.png" alt="Instagram" style="width: 24px;"></a>
+                <a href="#" style="margin: 0 10px;"><img src="images/tweeter.png" alt="Twitter" style="width: 24px;"></a>
+                <a href="#" style="margin: 0 10px;"><img src="images/email.png" alt="Email" style="width: 24px;"></a>
+            </div>
+            <div style="text-align: center;">
+                <h4>POLICIES</h4>
+                <div style="display: flex; justify-content: center; flex-wrap: wrap;">
+                    <a href="#" style="color: white; text-decoration: none; margin: 0 5px;">Privacy Policy</a>
+                    <a href="#" style="color: white; text-decoration: none; margin: 0 5px;">Legal Notice</a>
+                    <a href="#" style="color: white; text-decoration: none; margin: 0 5px;">Cookie Policy</a>
+                    <a href="#" style="color: white; text-decoration: none; margin: 0 5px;">Code of Conduct</a>
+                    <a href="#" style="color: white; text-decoration: none; margin: 0 5px;">Whistleblowing System</a>
+                </div>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 20px; font-size: 12px;">
+            &copy; 2023 Bugatti Rimac d.o.o. All rights reserved.
+        </div>
+    </footer>
+
 
 </body>
 </html>

@@ -3,16 +3,28 @@ session_start();
 include 'mahasiswa/db.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    
-    $sql = "INSERT INTO users (username, password, role) VALUES ('$username', '$password', 'member')";
-    if ($conn->query($sql) === TRUE) {
-        $successMessage = "Pengguna berhasil didaftarkan!";
+    $username = trim($_POST['username']);
+    $password = trim($_POST['password']);
+
+    // Validasi input
+    if (empty($username) || empty($password)) {
+        $errorMessage = "Semua kolom harus diisi.";
     } else {
-        $errorMessage = "Terjadi kesalahan: " . $conn->error;
+        // Gunakan prepared statements
+        $stmt = $conn->prepare("INSERT INTO users (username, password, role) VALUES (?, ?, ?)");
+        $role = 'user'; // Role default adalah 'user'
+
+        $stmt->bind_param("sss", $username, $password, $role);
+
+        if ($stmt->execute()) {
+            $successMessage = "Pengguna berhasil didaftarkan!";
+        } else {
+            $errorMessage = "Terjadi kesalahan: " . $stmt->error;
+        }
+        $stmt->close();
     }
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             justify-content: center; 
             align-items: center; 
             height: 100vh;
-            background-color: #00a676; /* Background umum PEDINUS */
+            background-color: #00a676;
         }
 
         .container {
@@ -42,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         h1 {
-            color: #333; /* Warna teks utama PEDINUS */
+            color: #333;
             font-size: 24px; 
             text-align: center; 
             margin-bottom: 20px; 
@@ -70,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         button {
-            background-color: #00a676; /* Warna tombol login PEDINUS */
+            background-color: #00a676;
             color: #fff;
             padding: 10px;
             border: none;
@@ -82,7 +94,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         button:hover {
-            background-color: black; /* Warna hover tombol login */
+            background-color: black;
         }
 
         a {
@@ -90,7 +102,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             text-align: center;
             margin-top: 15px; 
             text-decoration: none; 
-            color: #00a676; /* Warna tombol explore PEDINUS */
+            color: #00a676;
         }
     </style>
 </head>

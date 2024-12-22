@@ -24,7 +24,7 @@
         </label>
         <div class="menu">            
             <ul>
-                <li><a href="#">Home</a></li>
+                <li><a href="index.php">Home</a></li>
                 <li><a href="showroom.php">Showroom</a></li>
                 <li><a href="loginpengguna.php">Login</a></li>
                 <li><a href="register.php">Registrasi</a></li>

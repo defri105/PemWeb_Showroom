@@ -319,7 +319,7 @@ $result = $conn->query($sql);
                 $carId = $row['id'];
                 $carName = htmlspecialchars($row['car_name']);
                 $price = number_format($row['price'], 0, ',', '.');
-                $image = $carName === 'Nevera' ? 'images/rimec nevera.jpg' : ($carName === 'Nevera R' ? 'images/nevera R.jpg' : 'images/nevera R.jpg');
+                $image = $carName === 'Nevera' ? 'images/Nevera.jpg' : ($carName === 'Nevera R' ? 'images/Nevera R.jpg' : 'images/stock.jpg');
                 echo "
                     <div class='car-card'>
                         <img src='$image' alt='$carName'>

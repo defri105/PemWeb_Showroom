@@ -17,6 +17,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($stmt->execute()) {
             $success = "Pemesanan berhasil dilakukan!";
+            $stmt->close();
+            header("Location: showroom.php");
         } else {
             $error = "Terjadi kesalahan: " . $stmt->error;
         }

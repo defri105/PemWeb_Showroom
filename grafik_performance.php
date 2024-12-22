@@ -101,7 +101,7 @@ $conn->close();
                     text: '<?php echo htmlspecialchars($car['car_name']); ?> Performance Statistics'
                 },
                 xAxis: {
-                    categories: ['POWER (HP)', 'TORQUE (NM)', 'ACCELERATION (0-60 MPH)', '1/4 MILE TIME', 'TOP SPEED (MPH)', 'BATTERY (KWH)'],
+                    categories: ['POWER (HP)', 'TORQUE (NM)', 'ACCELERATION 0-60 MPH', '1/4 MILE TIME', 'TOP SPEED (MPH)', 'BATTERY (KWH)'],
                     title: {
                         text: null
                     }

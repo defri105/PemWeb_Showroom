@@ -85,8 +85,9 @@
     </section>
 
 
-        <!-- Zigzag Section -->
+<!-- Zigzag Section -->
 <section class="zigzag-section">
+
     <div class="zigzag-item zigzag1">
         <div class="zigzag-text">
             <h3>Vehicle Engineering: Structural Analysis</h3>
@@ -96,6 +97,7 @@
             <img src="img/dev_hub_img_01_16-9.jpg" alt="Zigzag 1">
         </div>
     </div>
+
     <div class="zigzag-item zigzag2 reverse">
         <div class="zigzag-image">
             <img src="img/dev_hub_img_02_16-9.jpg" alt="Zigzag 2">
@@ -105,6 +107,7 @@
             <p>Featuring some of the most advanced aerodynamics on a road-legal production car, the C_Two showcases our unparalleled understanding of automotive airflow and active aerodynamic elements control. The aerodynamic concept is designed with different requirements in mind: cooling of the battery and powertrain systems, efficiency, downforce, aerodynamic balance and more. Discover how we achieved our targets.</p>
         </div>
     </div>
+
     <div class="zigzag-item zigzag3">
         <div class="zigzag-text">
             <h3>Vehicle dynamics</h3>
@@ -114,6 +117,7 @@
             <img src="img/dev_hub_img_03_16-9.jpg" alt="Zigzag 3">
         </div>
     </div>
+
     <div class="zigzag-item zigzag4 reverse">
         <div class="zigzag-image">
             <img src="img/dev_hub_img_04_16-9.jpg" alt="Zigzag 4">
@@ -123,6 +127,7 @@
             <p>Tires are a critical component of every car. Forming the only physical link between the road surface and the vehicle, it is essential to equip our vehicles with the best performing tires available. Tested and developed through our own rigorous programme, we design bespoke tires in partnership with Pirelli to handle the most extreme performance in all conditions.</p>
         </div>
     </div>
+
     <div class="zigzag-item zigzag5">
         <div class="zigzag-text">
             <h3>Torque Vectoring</h3>
@@ -132,6 +137,7 @@
             <img src="img/dev_hub_img_05_16-9.jpg" alt="Zigzag 5">
         </div>
     </div>
+
     <div class="zigzag-item zigzag6 reverse">
         <div class="zigzag-image">
             <img src="img/dev_hub_img_06_16-9.jpg" alt="Zigzag 6">
@@ -141,6 +147,7 @@
             <p>Our in-house developed Driver Coach is where advanced AI and real-world driving come together. Featured on the C_Two, Driver Coach is a personal in-car performance aid to help the driver utilize the car's full potential, optimise performance and create new levels of driving excitement.</p>
         </div>
     </div>
+
     <div class="zigzag-item zigzag7">
         <div class="zigzag-text">
             <h3>Inverter development</h3>
@@ -150,6 +157,7 @@
             <img src="img/dev_hub_img_07_16-9.jpg" alt="Zigzag 7">
         </div>
     </div>
+
     <div class="zigzag-item zigzag8 reverse">
         <div class="zigzag-image">
             <img src="img/dev_hub_img_08_progressive.jpg" alt="Zigzag 8">
@@ -159,6 +167,7 @@
             <p>The performance, mass and dimensional requirements could only be met by developing the components from scratch.</p>
         </div>
     </div>
+
     <div class="zigzag-item zigzag9">
         <div class="zigzag-text">
             <h3>Components development: Structural Analysis</h3>
@@ -168,6 +177,7 @@
             <img src="img/dev_hub_img_09_16-9.jpg" alt="Zigzag 9">
         </div>
     </div>
+
     <div class="zigzag-item zigzag10 reverse">
         <div class="zigzag-image">
             <img src="img/dev_hub_img_10.jpg" alt="Zigzag 10">
@@ -177,7 +187,7 @@
             <p>From graphically seductive in-vehicle user interfaces to vast amount of vehicle data handling in the cloud and specially tailored mobile apps for next generation hypercar is done in-house within Software Development Department.</p>
         </div>
     </div>
-    <!-- Repeat similar structure for 8 more items -->
+
 </section>
 
 

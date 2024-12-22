@@ -91,22 +91,6 @@ $result = $conn->query($sql);
         ?>
     </div>
 </div>
-<!-- Pesan Sekarang Button -->
-<div style="text-align: center; margin-top: 30px;">
-    <?php
-    if (!isset($_SESSION['user_id'])) {
-        // User is not logged in
-        echo "<a href='loginpengguna.php?redirect=pemesanan.php' style='text-decoration: none;'>
-                <button style='background-color: #28a745; color: white; padding: 15px 30px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer;'>Pesan Sekarang!</button>
-              </a>";
-    } else {
-        // User is logged in
-        echo "<a href='pemesanan.php' style='text-decoration: none;'>
-                <button style='background-color: #28a745; color: white; padding: 15px 30px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer;'>Pesan Sekarang!</button>
-              </a>";
-    }
-    ?>
-</div>
 <!-- Footer -->
     <footer style="color: white; padding: 40px 20px; font-size: 14px;">
         <div style="text-align: center; margin-bottom: 20px;">

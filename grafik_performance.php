@@ -91,6 +91,22 @@ $conn->close();
         </div>
     </div>
     <div id="container" style="width: 80%; margin: 50px auto; height: 400px;"></div>
+    <!-- Pesan Sekarang Button -->
+    <div style="text-align: center; margin-top: 30px;">
+        <?php
+        if (!isset($_SESSION['user_id'])) {
+            // User is not logged in
+            echo "<a href='loginpengguna.php?redirect=pemesanan.php' style='text-decoration: none;'>
+                    <button style='background-color: #28a745; color: white; padding: 15px 30px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer;'>Pesan Sekarang!</button>
+                </a>";
+        } else {
+            // User is logged in
+            echo "<a href='pemesanan.php' style='text-decoration: none;'>
+                    <button style='background-color: #28a745; color: white; padding: 15px 30px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer;'>Pesan Sekarang!</button>
+                </a>";
+        }
+        ?>
+    </div>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             Highcharts.chart('container', {

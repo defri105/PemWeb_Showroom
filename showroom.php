@@ -49,6 +49,7 @@ $result = $conn->query($sql);
         <div class="hero-slide" style="background-image: url('img/rimac-nevera-r (3).jpg');"></div>
         <div class="hero-slide" style="background-image: url('img/rimac-nevera-r (4).jpg');"></div>
         <div class="hero-slide" style="background-image: url('img/rimac-nevera-r (5).jpg');"></div>
+        <div class="hero-slide" style="background-image: url('img/rimac-nevera-r (6).jpg');"></div>
     </div>
 </section>
 
@@ -78,20 +79,20 @@ $result = $conn->query($sql);
                         <img src='$imagePath' alt='$carName'>
                     </a>
                         <h3 style='margin: 15px 0; color: inherit;'>$carName</h3>
-                        <p style='font-size: 18px; color: #666;'>Harga: Rp $price</p>";
+                        <p style='font-size: 18px; padding: 0 0 20px 0; color: #666;'>Harga: Rp $price</p>";
 
                 // Add "Pesan Sekarang!" button based on login status
                 if (!isset($_SESSION['user_id'])) {
                     // User is not logged in
                     echo "
                         <a href='loginpengguna.php?redirect=pemesanan.php' style='text-decoration: none;'>
-                            <button style='background-color: #28a745; color: white; padding: 10px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer;'>Pesan Sekarang!</button>
+                            <button style='background-color: darkcyan; color: white; padding: 10px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer;'>Pesan Sekarang!</button>
                         </a>";
                 } else {
                     // User is logged in
                     echo "
                         <a href='pemesanan.php?car_id=$carId' style='text-decoration: none;'>
-                            <button style='background-color: #28a745; color: white; padding: 10px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer;'>Pesan Sekarang!</button>
+                            <button style='background-color: darkcyan; color: white; padding: 10px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer;'>Pesan Sekarang!</button>
                         </a>";
                 }
 

@@ -1,30 +1,35 @@
 <?php
-session_start();
 include 'mahasiswa/db.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = trim($_POST['username']);
     $password = trim($_POST['password']);
 
-    // Validasi input
     if (empty($username) || empty($password)) {
-        $errorMessage = "Semua kolom harus diisi.";
+        echo json_encode([
+            'success' => false,
+            'message' => 'Semua kolom harus diisi.',
+        ]);
     } else {
-        // Gunakan prepared statements
         $stmt = $conn->prepare("INSERT INTO users (username, password, role) VALUES (?, ?, ?)");
-        $role = 'user'; // Role default adalah 'user'
-
+        $role = 'user';
         $stmt->bind_param("sss", $username, $password, $role);
 
         if ($stmt->execute()) {
-            $successMessage = "Pengguna berhasil didaftarkan!";
+            echo json_encode([
+                'success' => true,
+                'message' => 'Pengguna berhasil didaftarkan!',
+            ]);
         } else {
-            $errorMessage = "Terjadi kesalahan: " . $stmt->error;
+            echo json_encode([
+                'success' => false,
+                'message' => 'Terjadi kesalahan: ' . $stmt->error,
+            ]);
         }
         $stmt->close();
     }
+    exit();
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -119,18 +124,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <div class="container">
         <h1>Daftar Pengguna</h1>
-        <?php if (isset($successMessage)) { ?>
-            <div class="message"><?php echo $successMessage; ?></div>
-        <?php } ?>
-        <?php if (isset($errorMessage)) { ?>
-            <div class="error"><?php echo $errorMessage; ?></div>
-        <?php } ?>
-        <form method="post">
+        <div class="message" style="color: green;"></div>
+        <div class="error" style="color: red;"></div>
+        <form>
             <input type="text" name="username" placeholder="Username" required>
             <input type="password" name="password" placeholder="Password" required>
             <button type="submit">Daftar</button>
         </form>
         <a href="loginpengguna.php">Sudah punya akun? Masuk di sini</a>
     </div>
+    <script>
+        document.querySelector('form').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const formData = new FormData(this);
+            fetch('register.php', {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    document.querySelector('.message').textContent = data.message;
+                    document.querySelector('.error').textContent = '';
+                } else {
+                    document.querySelector('.error').textContent = data.message;
+                    document.querySelector('.message').textContent = '';
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
 </body>
 </html>

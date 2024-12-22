@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'mahasiswa/db.php'; 
+include 'mahasiswa/db.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
@@ -17,15 +17,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['role'] = $user['role'];
         $_SESSION['user_id'] = $user['id'];
 
-        if ($user['role'] == 'admin') {
-            header("Location: admin/dashboard.php");
-        } else {
-            header("Location: index.php");
-        }
-        exit();
+        echo json_encode([
+            'success' => true,
+            'role' => $user['role'],
+        ]);
     } else {
-        $error = "Username atau password salah!";
+        echo json_encode([
+            'success' => false,
+            'message' => 'Username atau password salah!',
+        ]);
     }
+    exit();
 }
 ?>
 <!DOCTYPE html>
@@ -116,15 +118,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <div class="container">
         <h1>Login Pengguna</h1>
-        <?php if (isset($error)) { ?>
-            <div class="error"><?php echo $error; ?></div>
-        <?php } ?>
-        <form method="post">
+        <div class="error" style="color: red;"></div>
+        <form>
             <input type="text" name="username" placeholder="Username" required>
             <input type="password" name="password" placeholder="Password" required>
             <button type="submit">Login</button>
         </form>
         <a href="register.php">Belum memiliki akun? Daftar sekarang</a>
     </div>
+    <script>
+        document.querySelector('form').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const formData = new FormData(this);
+            fetch('loginpengguna.php', {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    if (data.role === 'admin') {
+                        window.location.href = 'admin/dashboard.php';
+                    } else {
+                        window.location.href = 'index.php';
+                    }
+                } else {
+                    document.querySelector('.error').textContent = data.message;
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
 </body>
 </html>

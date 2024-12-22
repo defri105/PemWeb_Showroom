@@ -152,7 +152,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     if (data.role === 'admin') {
                         window.location.href = 'admin/dashboard.php';
                     } else {
-                        window.location.href = 'pemesanan.php';
+                        window.location.href = 'showroom.php';
                     }
                 } else {
                     document.querySelector('.error').textContent = data.message;

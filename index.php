@@ -233,17 +233,6 @@
             &copy; 2023 Bugatti Rimac d.o.o. All rights reserved.
         </div>
     </footer>
-    <script>
-        // Change navbar color on scroll
-        window.onscroll = function() {
-            const navbar = document.getElementById("navbar");
-            if (window.pageYOffset > 100) {
-                navbar.classList.add("scrolled");
-            } else {
-                navbar.classList.remove("scrolled");
-            }
-        };
-    </script>
-
+    <script type = "text/javascript" src="js/style.js"></script>
 </body>
 </html>

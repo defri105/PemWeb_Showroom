@@ -66,7 +66,7 @@
     background-color: rgb(0, 25, 35);
     z-index: -100;
     opacity: 0;
-    transition: 0.3s ease-in-out;
+    transition: opacity 0.3s ease-in-out;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -75,7 +75,7 @@
 .navigation .menu ul{
     opacity: 1;
     transform: scale(1);
-    transition: all 0.3 ease-in-out;
+    transition: 0.3 ease-in-out;
     z-index: 5;
 }
 
@@ -93,16 +93,24 @@
     text-align: left;
     padding: 20px 5px;
     position: relative;
+    transition: 0.3s ease;
 }
 
 .navigation .menu ul li a:hover{
     transform: scale(1.2);
-    transition: all 0.3 ease-in-out;
 }
 
 .navigation input:checked~ .menu{
-    opacity: 1;
     z-index: 3;
+}
+
+.navigation .menu.z-index-visible {
+    z-index: 3; /* Set z-index lebih tinggi */
+    opacity: 0; /* Tetap transparan */
+}
+
+.navigation .menu.visible {
+    opacity: 1;
 }
 
 /* Navbar styling */

@@ -6,27 +6,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    $stmt = $conn->prepare("SELECT * FROM users WHERE username=? AND password=?");
-    $stmt->bind_param("ss", $username, $password);
+    $stmt = $conn->prepare("SELECT * FROM users WHERE username=?");
+    $stmt->bind_param("s", $username);
     $stmt->execute();
     $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
         $user = $result->fetch_assoc();
-        $_SESSION['username'] = $user['username'];
-        $_SESSION['role'] = $user['role'];
-        $_SESSION['user_id'] = $user['id'];
 
-        echo json_encode([
-            'success' => true,
-            'role' => $user['role'],
-        ]);
+        if (password_verify($password, $user['password'])) {
+            $_SESSION['username'] = $user['username'];
+            $_SESSION['role'] = $user['role'];
+            $_SESSION['user_id'] = $user['id'];
+
+            echo json_encode([
+                'success' => true,
+                'role' => $user['role'],
+            ]);
+        } else {
+            echo json_encode([
+                'success' => false,
+                'message' => 'Password salah!',
+            ]);
+        }
     } else {
         echo json_encode([
             'success' => false,
-            'message' => 'Username atau password salah!',
+            'message' => 'Username tidak ditemukan!',
         ]);
     }
+
+    $stmt->close();
+    $conn->close();
     exit();
 }
 ?>

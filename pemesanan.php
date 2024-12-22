@@ -166,22 +166,34 @@ if (!$car) {
                 Total Harga: Rp <span id="total-price"><?php echo number_format($car['price'], 0, ',', '.'); ?></span>
             </div>
             
+            <!-- Converted Price -->
+            <div class="price-update">
+                Converted Price: $<span id="converted-price"><?php echo number_format($car['price'] / 15000, 2); ?></span>
+            </div>
+
             <button type="submit">Pesan Sekarang</button>
         </form>
     </div>
 
     <script>
         $(document).ready(function() {
-            // Update total price when quantity changes
+            // Update total price and converted price when quantity changes
             $('#quantity').on('input', function() {
                 var quantity = $(this).val();
                 var carPrice = <?php echo $car['price']; ?>;
+                var exchangeRate = 15000; // Assume 1 USD = 15,000 IDR, adjust as needed
 
-                // Calculate the total price
+                // Calculate the total price in IDR
                 var totalPrice = carPrice * quantity;
+
+                // Convert the total price to USD
+                var convertedPrice = totalPrice / exchangeRate;
 
                 // Update the price display
                 $('#total-price').text(totalPrice.toLocaleString());
+
+                // Update the converted price display
+                $('#converted-price').text(convertedPrice.toFixed(2));
             });
         });
     </script>

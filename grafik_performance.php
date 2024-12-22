@@ -30,54 +30,31 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo htmlspecialchars($car['car_name']); ?> Performance</title>
-    <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            font-family: 'Arial', sans-serif;
-        }
-        .hero {
-            position: relative;
-            height: 100vh;
-            overflow: hidden;
-        }
-        .hero video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
-        }
-        .content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            color: white;
-        }
-        .stats {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-        .stats div {
-            text-align: center;
-        }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/grafik_performance.css">
     <script src="https://code.highcharts.com/highcharts.js"></script>
 </head>
 <body>
+
+    <nav id="navbar">
+        <div class="logo"><img src="img/logo.png" alt="PEDINUS Logo" style="height: 70px; max-height: 100%;"></div>
+    </nav>
+
+    <div class="navigation">
+        <input type="checkbox" name="checkbox" id="menu-btn" class="menu-btn">
+        <label for="menu-btn" class="menu-icon">
+            <span class="bar"></span>
+        </label>
+        <div class="menu">            
+            <ul>
+                <li><a href="index.php">Home</a></li>
+                <li><a href="showroom.php">Showroom</a></li>
+                <li><a href="loginpengguna.php">Login</a></li>
+                <li><a href="register.php">Registrasi</a></li>
+            </ul>
+        </div>
+    </div>
+
     <div class="hero">
         <video autoplay muted loop>
             <source src="images/video.mp4" type="video/mp4">
@@ -163,7 +140,7 @@ $conn->close();
             });
         });
     </script>
-    <footer style="background-color: #001f3f; color: white; padding: 40px 20px; font-size: 14px;">
+    <footer style="color: white; padding: 40px 20px; font-size: 14px;">
         <div style="text-align: center; margin-bottom: 20px;">
             <img src="images/logo rimac.png" alt="Rimac Logo" style="width: 200px;">
             <div style="margin-top: 10px;">
@@ -205,5 +182,6 @@ $conn->close();
             &copy; 2023 Bugatti Rimac d.o.o. All rights reserved.
         </div>
     </footer>
+    <script type = "text/javascript" src="js/style.js"></script>
 </body>
 </html>

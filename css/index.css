@@ -77,7 +77,7 @@ body {
     top: 0;
     left: 0;
     background-color: rgb(0, 25, 35);
-    z-index: 4;
+    z-index: 0;
     opacity: 0;
     transition: 0.3s ease-in-out;
     display: flex;
@@ -115,6 +115,7 @@ body {
 
 .navigation input:checked~ .menu{
     opacity: 1;
+    z-index: 3;
 }
 
 /* Navbar styling */

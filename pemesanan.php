@@ -55,6 +55,7 @@ if (!$car) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pemesanan</title>
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -127,6 +128,12 @@ if (!$car) {
             background-color: #f8d7da;
             color: #721c24;
         }
+
+        .price-update {
+            font-size: 18px;
+            color: #333;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -137,7 +144,7 @@ if (!$car) {
         <form method="POST">
             <input type="hidden" name="car_id" value="<?php echo htmlspecialchars($car['id']); ?>">
             <p><strong>Mobil yang Dipesan:</strong> <?php echo htmlspecialchars($car['car_name']); ?></p>
-            <p><strong>Harga:</strong> Rp <?php echo number_format($car['price'], 0, ',', '.'); ?></p>
+            <p><strong>Harga:</strong> Rp <span id="price"><?php echo number_format($car['price'], 0, ',', '.'); ?></span></p>
 
             <label for="name">Nama Lengkap:</label>
             <input type="text" id="name" name="name" required>
@@ -152,10 +159,31 @@ if (!$car) {
             <textarea id="address" name="address" rows="3" required></textarea>
 
             <label for="quantity">Jumlah Pemesanan:</label>
-            <input type="number" id="quantity" name="quantity" min="1" required>
+            <input type="number" id="quantity" name="quantity" min="1" value="1" required>
 
+            <!-- Price Update -->
+            <div class="price-update">
+                Total Harga: Rp <span id="total-price"><?php echo number_format($car['price'], 0, ',', '.'); ?></span>
+            </div>
+            
             <button type="submit">Pesan Sekarang</button>
         </form>
     </div>
+
+    <script>
+        $(document).ready(function() {
+            // Update total price when quantity changes
+            $('#quantity').on('input', function() {
+                var quantity = $(this).val();
+                var carPrice = <?php echo $car['price']; ?>;
+
+                // Calculate the total price
+                var totalPrice = carPrice * quantity;
+
+                // Update the price display
+                $('#total-price').text(totalPrice.toLocaleString());
+            });
+        });
+    </script>
 </body>
 </html>

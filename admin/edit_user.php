@@ -4,6 +4,7 @@ include '../mahasiswa/db.php';
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
+    // Handle the form submission
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $username = $_POST['username'];
         $password = $_POST['password'];
@@ -35,18 +36,22 @@ if (isset($_GET['id'])) {
         }
 
         $stmt->close();
-        $conn->close();
     }
 
+    // Fetch the user data for the form
     $sql = "SELECT * FROM users WHERE id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $id);
     $stmt->execute();
     $result = $stmt->get_result();
     $user = $result->fetch_assoc();
+    $stmt->close();
 } else {
     die("No user ID provided.");
 }
+
+// Close the connection at the end
+$conn->close();
 ?>
 <!DOCTYPE html>
 <html lang="en">

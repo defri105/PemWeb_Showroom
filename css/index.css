@@ -86,10 +86,10 @@ body {
 }
 
 .hero-content .explore-btn:hover {
-    background-color: darkcyan;
+    background-color: rgb(255, 255, 255);
     color: white;
     transform: scale(1.1);
-    box-shadow: 0 6px 15px cyan;
+    box-shadow: 0 6px 15px rgb(255, 255, 255);
 }
 
 .hero-image img {

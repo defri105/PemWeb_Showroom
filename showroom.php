@@ -3,7 +3,7 @@
 include_once 'mahasiswa/db.php';
 
 // Fetch car data from the database
-$sql = "SELECT car_name, price FROM car_stats";
+$sql = "SELECT id, car_name, price FROM car_stats";
 $result = $conn->query($sql);
 ?>
 
@@ -128,7 +128,7 @@ $result = $conn->query($sql);
         <ul>
             <li><a href="index.php">Home</a></li>
             <li><a href="showroom.php">Showroom</a></li>
-            <li><a href="login.php">Login</a></li>
+            <li><a href="loginpengguna.php">Login</a></li>
             <li><a href="register.php">Registrasi</a></li>
         </ul>
     </nav>
@@ -141,12 +141,13 @@ $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                 // Output data for each car
                 while ($row = $result->fetch_assoc()) {
+                    $carId = $row['id'];
                     $carName = htmlspecialchars($row['car_name']);
                     $price = number_format($row['price'], 0, ',', '.');
                     echo "
                         <div class='car-card'>
                             <img src='img/mobil.jpg' alt='$carName'>
-                            <h3>$carName</h3>
+                            <h3><a href='grafik_performance.php?id=$carId'>$carName</a></h3>
                             <p>Harga: Rp $price</p>
                         </div>
                     ";

@@ -6,7 +6,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // Prepare and execute the query securely
     $stmt = $conn->prepare("SELECT * FROM users WHERE username=? AND password=?");
     $stmt->bind_param("ss", $username, $password);
     $stmt->execute();
@@ -18,7 +17,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['role'] = $user['role'];
         $_SESSION['user_id'] = $user['id'];
 
-        // Redirect based on the user's role
         if ($user['role'] == 'admin') {
             header("Location: admin/dashboard.php");
         } else {
@@ -36,64 +34,82 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Pengguna</title>
+    <link rel="stylesheet" href="css/style.css">
     <style>
         body {
-            font-family: 'Tahoma', sans-serif;
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
             display: flex;
-            justify-content: center; 
-            align-items: center; 
+            justify-content: center;
+            align-items: center;
             height: 100vh;
-            background-color: #00a676;
+            background: linear-gradient(135deg, #001f3f, #0056b3);
+            color: white;
         }
         .container {
-            background-color: #fff; 
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            width: 100%; 
-            max-width: 400px; 
+            background-color: #f9fafb;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 100%;
+            animation: fadeIn 0.8s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
         }
         h1 {
-            color: #333;
-            font-size: 24px; 
-            text-align: center; 
-            margin-bottom: 20px; 
+            text-align: center;
+            color: #001f3f;
+            margin-bottom: 30px;
+            font-size: 28px;
         }
         .error {
-            color: red; 
-            margin-bottom: 10px;
-            text-align: center; 
+            color: red;
+            margin-bottom: 20px;
+            text-align: center;
         }
         input[type="text"], input[type="password"] {
-            width: 90%;
-            padding: 10px;
-            margin: 10px 0;
+            width: 100%;
+            padding: 12px;
+            margin: 15px 0;
             border: 1px solid #ccc;
-            border-radius: 5px;
+            border-radius: 8px;
             font-size: 16px;
+            outline: none;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        input[type="text"]:focus, input[type="password"]:focus {
+            border-color: #0056b3;
         }
         button {
-            background-color: #00a676;
-            color: #fff;
-            padding: 10px;
+            background-color: #001f3f;
+            color: white;
+            padding: 12px;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
-            transition: background-color 0.3s;
-            width: 95%;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            width: 100%;
             font-size: 16px;
+            margin-top: 10px;
         }
         button:hover {
-            background-color: black;
+            background-color: #0056b3;
+            transform: scale(1.05);
         }
         a {
-            display: block; 
+            display: block;
             text-align: center;
-            margin-top: 15px; 
-            text-decoration: none; 
-            color: #00a676;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #001f3f;
+            font-size: 14px;
+        }
+        a:hover {
+            color: #0056b3;
         }
     </style>
 </head>
@@ -108,7 +124,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="password" name="password" placeholder="Password" required>
             <button type="submit">Login</button>
         </form>
-        <a href="register.php">Daftar sebagai Pengguna</a>
+        <a href="register.php">Belum memiliki akun? Daftar sekarang</a>
     </div>
 </body>
 </html>

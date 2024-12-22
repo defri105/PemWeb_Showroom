@@ -6,22 +6,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    $sql = "SELECT * FROM users WHERE username='$username' AND password='$password'";
-    $result = $conn->query($sql);
+    // Prepare and execute the query securely
+    $stmt = $conn->prepare("SELECT * FROM users WHERE username=? AND password=?");
+    $stmt->bind_param("ss", $username, $password);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
-        $user = $result->fetch_assoc(); 
+        $user = $result->fetch_assoc();
         $_SESSION['username'] = $user['username'];
-        $_SESSION['role'] = 'member';
-        $_SESSION['user_id'] = $user['id']; 
-        header("Location: index.php"); 
+        $_SESSION['role'] = $user['role'];
+        $_SESSION['user_id'] = $user['id'];
+
+        // Redirect based on the user's role
+        if ($user['role'] == 'admin') {
+            header("Location: admin/dashboard.php");
+        } else {
+            header("Location: index.php");
+        }
         exit();
     } else {
         $error = "Username atau password salah!";
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,9 +45,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             justify-content: center; 
             align-items: center; 
             height: 100vh;
-            background-color: #00a676; /* Background umum PEDINUS */
+            background-color: #00a676;
         }
-
         .container {
             background-color: #fff; 
             padding: 30px;
@@ -48,20 +55,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             width: 100%; 
             max-width: 400px; 
         }
-
         h1 {
-            color: #333; /* Warna teks utama PEDINUS */
+            color: #333;
             font-size: 24px; 
             text-align: center; 
             margin-bottom: 20px; 
         }
-
         .error {
             color: red; 
             margin-bottom: 10px;
             text-align: center; 
         }
-
         input[type="text"], input[type="password"] {
             width: 90%;
             padding: 10px;
@@ -70,9 +74,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             border-radius: 5px;
             font-size: 16px;
         }
-
         button {
-            background-color: #00a676 ; /* Warna tombol login PEDINUS */
+            background-color: #00a676;
             color: #fff;
             padding: 10px;
             border: none;
@@ -82,18 +85,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             width: 95%;
             font-size: 16px;
         }
-
         button:hover {
-            background-color: black; /* Warna hover tombol login */
-            
+            background-color: black;
         }
-
         a {
             display: block; 
             text-align: center;
             margin-top: 15px; 
             text-decoration: none; 
-            color: #00a676; /* Warna tombol explore PEDINUS */
+            color: #00a676;
         }
     </style>
 </head>

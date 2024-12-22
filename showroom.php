@@ -39,16 +39,16 @@ $result = $conn->query($sql);
 <!-- Hero Section -->
 <section class="hero">
     <div class="hero-slider">
-        <div class="hero-slide" style="background-image: url('img/zigzag1.png');"></div>
-        <div class="hero-slide" style="background-image: url('img/zigzag2.png');"></div>
-        <div class="hero-slide" style="background-image: url('img/zigzag3.png');"></div>
-        <div class="hero-slide" style="background-image: url('img/zigzag4.png');"></div>
-        <div class="hero-slide" style="background-image: url('img/zigzag5.png');"></div>
-        <div class="hero-slide" style="background-image: url('img/zigzag6.png');"></div>
-        <div class="hero-slide" style="background-image: url('img/zigzag7.png');"></div>
-        <div class="hero-slide" style="background-image: url('img/zigzag8.png');"></div>
-        <div class="hero-slide" style="background-image: url('img/zigzag9.png');"></div>
-        <div class="hero-slide" style="background-image: url('img/zigzag10.png');"></div>
+        <div class="hero-slide" style="background-image: url('img/rimac-nevera (1).jpg');"></div>
+        <div class="hero-slide" style="background-image: url('img/rimac-nevera (2).jpg');"></div>
+        <div class="hero-slide" style="background-image: url('img/rimac-nevera (3).jpg');"></div>
+        <div class="hero-slide" style="background-image: url('img/rimac-nevera (4).jpg');"></div>
+        <div class="hero-slide" style="background-image: url('img/rimac-nevera (5).jpg');"></div>
+        <div class="hero-slide" style="background-image: url('img/rimac-nevera-r (1).jpg');"></div>
+        <div class="hero-slide" style="background-image: url('img/rimac-nevera-r (2).jpg');"></div>
+        <div class="hero-slide" style="background-image: url('img/rimac-nevera-r (3).jpg');"></div>
+        <div class="hero-slide" style="background-image: url('img/rimac-nevera-r (4).jpg');"></div>
+        <div class="hero-slide" style="background-image: url('img/rimac-nevera-r (5).jpg');"></div>
     </div>
 </section>
 

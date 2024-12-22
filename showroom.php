@@ -128,7 +128,7 @@ $result = $conn->query($sql);
         <ul>
             <li><a href="index.php">Home</a></li>
             <li><a href="showroom.php">Showroom</a></li>
-            <li><a href="login.php">Login</a></li>
+            <li><a href="loginpengguna.php">Login</a></li>
             <li><a href="register.php">Registrasi</a></li>
         </ul>
     </nav>

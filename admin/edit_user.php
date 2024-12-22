@@ -36,6 +36,7 @@ if (isset($_GET['id'])) {
         }
 
         $stmt->close();
+        header("Location: dashboard.php");
     }
 
     // Fetch the user data for the form

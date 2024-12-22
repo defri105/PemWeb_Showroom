@@ -1,5 +1,5 @@
 <?php
-include 'db.php'; // Include your database connection
+include '../mahasiswa/db.php'; // Include your database connection
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];

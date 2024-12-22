@@ -181,10 +181,11 @@ include '../mahasiswa/db.php';
 <body>
     <!-- Header Section -->
     <section class="header-section">
-        <button class="logout-btn" onclick="window.location.href='../index.php'">Logout</button>
+        <button class="logout-btn" onclick="window.location.href='logout.php'">Logout</button>
         <div class="dashboard-title">Admin Dashboard</div>
         <div class="admin-name">Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?></div>
     </section>
+
 
     <!-- Main Section -->
     <div class="main-section">

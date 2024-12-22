@@ -319,10 +319,18 @@ $result = $conn->query($sql);
                 $carId = $row['id'];
                 $carName = htmlspecialchars($row['car_name']);
                 $price = number_format($row['price'], 0, ',', '.');
-                $image = $carName === 'Nevera' ? 'images/Nevera.jpg' : ($carName === 'Nevera R' ? 'images/Nevera R.jpg' : 'images/stock.jpg');
+                
+                // Generate the image path based on the car name
+                $imagePath = 'images/' . $carName . '.jpg';
+                
+                // Check if the image file exists
+                if (!file_exists($imagePath)) {
+                    $imagePath = 'images/stock.jpg'; // Fallback image
+                }
+                
                 echo "
                     <div class='car-card'>
-                        <img src='$image' alt='$carName'>
+                        <img src='$imagePath' alt='$carName'>
                         <h3><a href='grafik_performance.php?id=$carId'>$carName</a></h3>
                         <p>Harga: Rp $price</p>
                     </div>

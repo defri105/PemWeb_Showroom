@@ -74,7 +74,9 @@ $result = $conn->query($sql);
 
                 echo "
                     <div class='car-card'>
+                    <a href='grafik_performance.php?id=$carId' style='text-decoration: none; color: inherit;'>
                         <img src='$imagePath' alt='$carName'>
+                    </a>
                         <h3 style='margin: 15px 0; color: inherit;'>$carName</h3>
                         <p style='font-size: 18px; color: #666;'>Harga: Rp $price</p>";
 

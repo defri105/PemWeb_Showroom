@@ -4,7 +4,7 @@ include 'mahasiswa/db.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user_id = $_SESSION['user_id'] ?? null; // Assume the user is logged in
-    $car_id = $_POST['car_id'];
+    $car_id = $_POST['car_id']; // Receive car_id
     $name = $_POST['name'];
     $email = $_POST['email'];
     $phone = $_POST['phone'];
@@ -12,13 +12,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $quantity = $_POST['quantity'];
 
     if ($user_id) {
+        // Prepare the SQL statement
         $stmt = $conn->prepare("INSERT INTO orders (user_id, car_id, name, email, phone, address, quantity) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        // Correct the bind_param to match the placeholders
         $stmt->bind_param("iissssi", $user_id, $car_id, $name, $email, $phone, $address, $quantity);
 
         if ($stmt->execute()) {
             $success = "Pemesanan berhasil dilakukan!";
             $stmt->close();
             header("Location: showroom.php");
+            exit;
         } else {
             $error = "Terjadi kesalahan: " . $stmt->error;
         }
@@ -28,8 +31,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-$cars = $conn->query("SELECT * FROM car_stats");
+if (!isset($_GET['car_name'])) {
+    die("Akses tidak valid.");
+}
+
+$car_name = $_GET['car_name'];
+$car_query = $conn->prepare("SELECT id, car_name, price FROM car_stats WHERE car_name = ?");
+$car_query->bind_param("s", $car_name);
+$car_query->execute();
+$car_result = $car_query->get_result();
+$car = $car_result->fetch_assoc();
+$car_query->close();
+
+if (!$car) {
+    die("Mobil tidak ditemukan.");
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -117,13 +135,9 @@ $cars = $conn->query("SELECT * FROM car_stats");
         <?php if (isset($success)) { echo "<div class='success'>{$success}</div>"; } ?>
         <?php if (isset($error)) { echo "<div class='error'>{$error}</div>"; } ?>
         <form method="POST">
-            <label for="car_id">Pilih Mobil:</label>
-            <select name="car_id" id="car_id" required>
-                <option value="">-- Pilih Mobil --</option>
-                <?php while ($car = $cars->fetch_assoc()) { ?>
-                    <option value="<?php echo $car['id']; ?>"><?php echo $car['car_name'] . " - Rp " . number_format($car['price'], 0, ',', '.'); ?></option>
-                <?php } ?>
-            </select>
+            <input type="hidden" name="car_id" value="<?php echo htmlspecialchars($car['id']); ?>">
+            <p><strong>Mobil yang Dipesan:</strong> <?php echo htmlspecialchars($car['car_name']); ?></p>
+            <p><strong>Harga:</strong> Rp <?php echo number_format($car['price'], 0, ',', '.'); ?></p>
 
             <label for="name">Nama Lengkap:</label>
             <input type="text" id="name" name="name" required>

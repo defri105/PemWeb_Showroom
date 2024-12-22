@@ -74,31 +74,33 @@ $result = $conn->query($sql);
                 }
 
                 echo "
-                    <div class='car-card'>
+                <div class='car-card'>
                     <a href='grafik_performance.php?id=$carId' style='text-decoration: none; color: inherit;'>
                         <img src='$imagePath' alt='$carName'>
                     </a>
-                        <h3 style='margin: 15px 0; color: inherit;'>$carName</h3>
-                        <p style='font-size: 18px; padding: 0 0 20px 0; color: #666;'>Harga: Rp $price</p>";
+                    <h3 style='margin: 15px 0; color: inherit;'>$carName</h3>
+                    <p style='font-size: 18px; padding: 0 0 20px 0; color: #666;'>Harga: Rp $price</p>
+                ";
 
                 // Add "Pesan Sekarang!" button based on login status
                 if (!isset($_SESSION['user_id'])) {
                     // User is not logged in
                     echo "
-                        <a href='loginpengguna.php?redirect=pemesanan.php' style='text-decoration: none;'>
+                        <a href='pemesanan.php?car_name=" . urlencode($carName) . "' style='text-decoration: none;'>
                             <button style='background-color: darkcyan; color: white; padding: 10px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer;'>Pesan Sekarang!</button>
                         </a>";
                 } else {
                     // User is logged in
                     echo "
-                        <a href='pemesanan.php?car_id=$carId' style='text-decoration: none;'>
+                        <a href='pemesanan.php?car_name=" . urlencode($carName) . "' style='text-decoration: none;'>
                             <button style='background-color: darkcyan; color: white; padding: 10px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer;'>Pesan Sekarang!</button>
                         </a>";
                 }
 
                 echo "</div>";
-            }
-        } else {
+
+                }
+            } else {
             echo "<p>No cars available in the showroom.</p>";
         }
 
